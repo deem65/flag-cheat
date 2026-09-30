@@ -1,0 +1,4 @@
+Lua 5.4.8
+https://www.lua.org/ftp/lua-5.4.8.tar.gz
+SHA-256: 4f18ddae154e793e46eeab727c59ef1c0c0c2b744e7b94219710d76f530629ae
+Unmodified upstream source. lua.c and luac.c are excluded from the static library.

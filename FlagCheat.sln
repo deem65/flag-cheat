@@ -1,0 +1,39 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lua", "third_party\Lua.vcxproj", "{9BEA72E3-E460-463A-B8EE-61D7430560C3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Read me", "Read me", "{3B6A5181-DB05-43DF-9F95-D31C96FBC1B0}"
+	ProjectSection(SolutionItems) = preProject
+		docs\ARCHITECTURE.md = docs\ARCHITECTURE.md
+		README.md = README.md
+		THIRD_PARTY_NOTICES.md = THIRD_PARTY_NOTICES.md
+		tools\Update-Flags.ps1 = tools\Update-Flags.ps1
+		docs\VALIDATION.md = docs\VALIDATION.md
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FlagCheat", "FlagCheat.vcxproj", "{0F47E3CE-8F37-46E7-A4B9-9E2C5E7DFA11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9BEA72E3-E460-463A-B8EE-61D7430560C3}.Debug|x64.ActiveCfg = Debug|x64
+		{9BEA72E3-E460-463A-B8EE-61D7430560C3}.Debug|x64.Build.0 = Debug|x64
+		{9BEA72E3-E460-463A-B8EE-61D7430560C3}.Release|x64.ActiveCfg = Release|x64
+		{9BEA72E3-E460-463A-B8EE-61D7430560C3}.Release|x64.Build.0 = Release|x64
+		{0F47E3CE-8F37-46E7-A4B9-9E2C5E7DFA11}.Debug|x64.ActiveCfg = Debug|x64
+		{0F47E3CE-8F37-46E7-A4B9-9E2C5E7DFA11}.Debug|x64.Build.0 = Debug|x64
+		{0F47E3CE-8F37-46E7-A4B9-9E2C5E7DFA11}.Release|x64.ActiveCfg = Release|x64
+		{0F47E3CE-8F37-46E7-A4B9-9E2C5E7DFA11}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CD62E7C0-21F5-44C3-AEDE-E46234568DEB}
+	EndGlobalSection
+EndGlobal

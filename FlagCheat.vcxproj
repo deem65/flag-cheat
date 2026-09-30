@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0F47E3CE-8F37-46E7-A4B9-9E2C5E7DFA11}</ProjectGuid>
+    <RootNamespace>FlagSnap</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>FlagCheat</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup>
+    <ProjectRoot>$(MSBuildProjectDirectory)\</ProjectRoot>
+    <OutDir>$(ProjectRoot)bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectRoot)obj\FlagSnap\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>FlagSnap</TargetName>
+    <LocalDebuggerWorkingDirectory>$(OutDir)</LocalDebuggerWorkingDirectory>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>UNICODE;_UNICODE;NOMINMAX;WIN32_LEAN_AND_MEAN;_WIN32_WINNT=0x0A00;WINVER=0x0A00;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectRoot)third_party\lua;$(ProjectRoot)source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <ConformanceMode>true</ConformanceMode>
+      <RuntimeLibrary Condition="'$(Configuration)'=='Debug'">MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary Condition="'$(Configuration)'=='Release'">MultiThreadedDLL</RuntimeLibrary>
+      <Optimization Condition="'$(Configuration)'=='Debug'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)'=='Release'">MaxSpeed</Optimization>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>windowscodecs.lib;ole32.lib;uuid.lib;user32.lib;gdi32.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>$(ProjectDir)source\app.manifest;%(AdditionalManifestFiles)</AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="source\Clipboard.cpp" />
+    <ClCompile Include="source\DiscordDrop.cpp" />
+    <ClCompile Include="source\FileIO.cpp" />
+    <ClCompile Include="source\Image.cpp" />
+    <ClCompile Include="source\ImageDecoder.cpp" />
+    <ClCompile Include="source\ImageDownload.cpp" />
+    <ClCompile Include="source\LuaPolicy.cpp" />
+    <ClCompile Include="source\MainWindow.cpp" />
+    <ClCompile Include="source\Matcher.cpp" />
+    <ClCompile Include="source\RecognitionWorker.cpp" />
+    <ClCompile Include="source\WindowsSupport.cpp" />
+    <ClCompile Include="source\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\Clipboard.h" />
+    <ClInclude Include="source\DiscordDrop.h" />
+    <ClInclude Include="source\FileIO.h" />
+    <ClInclude Include="source\Image.h" />
+    <ClInclude Include="source\ImageDecoder.h" />
+    <ClInclude Include="source\ImageDownload.h" />
+    <ClInclude Include="source\LuaPolicy.h" />
+    <ClInclude Include="source\MainWindow.h" />
+    <ClInclude Include="source\Matcher.h" />
+    <ClInclude Include="source\RecognitionWorker.h" />
+    <ClInclude Include="source\WindowsSupport.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lua\recognize.lua" />
+    <None Include="assets\flags.lua" />
+    <None Include="source\app.manifest" />
+    <None Include="README.md" />
+    <None Include="docs\ARCHITECTURE.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="third_party\Lua.vcxproj">
+      <Project>{9BEA72E3-E460-463A-B8EE-61D7430560C3}</Project>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <Target Name="CopyRuntimeData" AfterTargets="Build">
+    <ItemGroup>
+      <FlagAssets Include="$(ProjectDir)assets\**\*" />
+      <LuaScripts Include="$(ProjectDir)lua\**\*.lua" />
+    </ItemGroup>
+    <Copy SourceFiles="@(FlagAssets)" DestinationFiles="@(FlagAssets->'$(OutDir)assets\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(LuaScripts)" DestinationFiles="@(LuaScripts->'$(OutDir)lua\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+</Project>
