@@ -1,5 +1,6 @@
 # FlagCheat
 FlagCheat is a small windows utility application built on WinGDI, C++, Lua and WIC
+
 FlagCheat works on Windows only since it uses windows' libraries. 
 
 Paste or drag in a flag image and FlagCheat compares it against its reference flags, returning the most likely country or territory.
